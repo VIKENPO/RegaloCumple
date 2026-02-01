@@ -1004,16 +1004,7 @@ body {
         transform: rotate(-5deg);
     }
 
-    /* CENTER bottom photo */
-    .img-v3 {
-        display: block !important;
-        width: 60px;
-        bottom: 10px;
-        left: 50%;
-        transform: translateX(-50%) rotate(2deg);
-        border-width: 3px;
-        opacity: 0.8;
-    }
+    /* Revert: remove .img-v3 block (hidden by default in floating-img) */
 
     /* 5. Main App Components & Gallery */
     .app-container {
@@ -1106,38 +1097,34 @@ body {
         font-size: 1rem;
     }
 
-    /* 9. Trip Photos: Fit 3 on screen (Tiny Grid) */
+    /* 9. Trip Photos: Pyramid Layout (2 top, 1 bottom center) */
     .trip-photos-grid {
         display: flex;
         flex-direction: row;
-        /* Horizontal */
         flex-wrap: wrap;
-        /* Allow wrap if needed, but aim for single line if 3 */
-        justify-content: space-between;
-        gap: 5px;
-        /* Tight gap */
+        justify-content: center;
+        /* CENTER content so the last one is in middle */
+        gap: 10px;
         padding: 40px 0 10px 0;
     }
 
     .photo-card {
-        width: 32%;
-        /* Fit 3 in a row (32% * 3 + gaps < 100%) */
+        width: 45%;
+        /* Force 2 per row (45%*2 + gap < 100%) */
         max-width: none;
         padding: 5px 5px 20px 5px;
-        /* Tiny padding */
         transform: none !important;
         margin: 0;
     }
 
     .photo-card img {
-        height: 100px;
-        /* Force small height */
+        height: 120px;
+        /* Slightly taller than 3-in-row */
         object-fit: cover;
     }
 
     .photo-card::before {
         width: 40px;
-        /* Smaller tape */
         height: 12px;
         top: -6px;
     }
