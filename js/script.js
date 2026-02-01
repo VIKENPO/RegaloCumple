@@ -129,17 +129,17 @@ let europeLayer;
 function initMap() {
     if (map) return; // Prevent re-init
 
-    // Initialize Map centered on World - Zoom Disabled
+    // Initialize Map centered on World
     map = L.map('map', {
         center: [20, 0],
         zoom: 2,
         minZoom: 2,
-        zoomControl: false,
-        scrollWheelZoom: false,
-        doubleClickZoom: false,
-        touchZoom: false,
-        attributionControl: false, // Hide attribution text
-        dragging: true // Allow dragging to see everything
+        zoomControl: true, // Enable controls as requested
+        scrollWheelZoom: true, // Allow manual zoom
+        doubleClickZoom: true,
+        touchZoom: true,
+        attributionControl: false,
+        dragging: true
     });
 
     // Tile Layer (Satellite View)
@@ -271,9 +271,13 @@ function zoomToEurope() {
             }).addTo(map);
 
             // Zoom to Europe smoothly (Fit Bounds to see the WHOLE continent)
-            // Increased padding significantly to force "zoom out"
+            // Conditional Zoom: Mobile = Closer (20 padding), PC = Farther (100 padding)
+
+            const isMobile = window.innerWidth < 768;
+            const paddingValue = isMobile ? [20, 20] : [100, 100];
+
             map.flyToBounds(europeLayer.getBounds(), {
-                padding: [100, 100],
+                padding: paddingValue,
                 duration: 3,
                 easeLinearity: 0.1
             });
