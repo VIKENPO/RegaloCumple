@@ -271,15 +271,15 @@ function zoomToEurope() {
             }).addTo(map);
 
             // Zoom to Europe smoothly (Fit Bounds to see the WHOLE continent)
-            // This applies to BOTH Mobile and PC
+            // Increased padding significantly to force "zoom out"
             map.flyToBounds(europeLayer.getBounds(), {
-                padding: [50, 50],
+                padding: [100, 100],
                 duration: 3,
                 easeLinearity: 0.1
             });
 
             // Update instructions
-            document.getElementById('map-title').innerText = "¡Explora los países de Europa!";
+            document.getElementById('map-title').innerText = "¡Explora toda Europa!";
             document.getElementById('map-subtitle').innerText = ""; // Clear subtitle
         });
 }
@@ -314,7 +314,7 @@ function onCountryEachFeature(feature, layer) {
             // Transition to City Guessing Game after a delay
             setTimeout(() => {
                 startCityGuessingGame();
-            }, 4000);
+            }, 3000);
         });
     } else {
         // Standard Popup for others with "Cloud" message
