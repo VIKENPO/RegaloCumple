@@ -931,13 +931,20 @@ body {
     .welcome-subtitle {
         font-size: 1.2rem;
         /* Reduced from 1.8rem */
-        margin-bottom: 20px;
+        margin-bottom: 10px;
+        padding: 0 10px;
+        /* Add padding to prevent text hitting edges */
+    }
+
+    .gift-container {
+        margin-top: 10px;
+        /* Reset the negative margin (-50px) from desktop */
     }
 
     .gift-box {
         font-size: 6rem;
         /* Reduced from 10rem to prevent scroll */
-        margin-bottom: 10px;
+        margin-bottom: 5px;
     }
 
     .click-instruction {
