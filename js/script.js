@@ -315,7 +315,7 @@ function onCountryEachFeature(feature, layer) {
             // Transition to City Guessing Game after a delay
             setTimeout(() => {
                 startCityGuessingGame();
-            }, 8000);
+            }, 6000);
         });
     } else {
         // Standard Popup for others with "Cloud" message
