@@ -270,8 +270,11 @@ function zoomToEurope() {
                 onEachFeature: onCountryEachFeature
             }).addTo(map);
 
-            // Zoom to Europe smoothly
-            map.flyToBounds(europeLayer.getBounds(), {
+            // Zoom to Europe smoothly (Focused on Central Europe with more zoom)
+            // Using flyTo instead of bounds to force a closer view than the default "fit all"
+            const zoomLevel = window.innerWidth < 768 ? 5 : 5; // Zoom 5 is good for both, maybe 4.5 for tiny screens
+
+            map.flyTo([48, 12], 5, {
                 duration: 3,
                 easeLinearity: 0.1
             });
