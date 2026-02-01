@@ -1004,6 +1004,17 @@ body {
         transform: rotate(-5deg);
     }
 
+    /* CENTER bottom photo */
+    .img-v3 {
+        display: block !important;
+        width: 60px;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%) rotate(2deg);
+        border-width: 3px;
+        opacity: 0.8;
+    }
+
     /* 5. Main App Components & Gallery */
     .app-container {
         padding: 10px;
