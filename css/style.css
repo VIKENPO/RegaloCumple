@@ -892,24 +892,174 @@ body {
 
 /* Responsive Adjustments */
 @media (max-width: 768px) {
-    .floating-img {
-        width: 50px;
-        /* Even smaller on mobile */
-        border-width: 2px;
-        border-bottom-width: 8px;
+
+    /* 1. Global & Typography */
+    .hero {
+        padding: 30px 15px;
+        margin-top: 20px;
+        margin-bottom: 30px;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+        /* Reduced from 4rem */
+    }
+
+    .hero .subtitle {
+        font-size: 1.1rem;
+        /* Reduced from 1.5rem */
+    }
+
+    /* 2. Welcome Screen & Gift */
+    .welcome-screen {
+        padding: 10px;
+        /* Prevent edge touching */
+    }
+
+    .welcome-container {
+        width: 100%;
+        padding: 25px 15px;
+        border-radius: 25px;
     }
 
     .welcome-title {
-        font-size: 2.5rem;
+        font-size: 2.8rem;
+        /* Reduced from 5rem */
+        margin-bottom: 10px;
     }
 
-    /* Adjust positions for mobile to clear center */
-    .img-v2,
+    .welcome-subtitle {
+        font-size: 1.2rem;
+        /* Reduced from 1.8rem */
+        margin-bottom: 20px;
+    }
+
+    .gift-box {
+        font-size: 6rem;
+        /* Reduced from 10rem to prevent scroll */
+        margin-bottom: 10px;
+    }
+
+    .click-instruction {
+        font-size: 1rem;
+        padding: 5px 10px;
+    }
+
+    /* 3. Floating Images - TAME THEM */
+    .floating-img {
+        width: 80px;
+        /* Much smaller */
+        border-width: 3px;
+        border-bottom-width: 10px;
+        opacity: 0.6;
+        /* Less distracting */
+    }
+
+    /* Push them to edges to clear text area */
+    .img-v1 {
+        top: 2%;
+        left: -10px;
+        transform: rotate(-10deg);
+    }
+
+    .img-v2 {
+        bottom: 2%;
+        left: -10px;
+        transform: rotate(5deg);
+        display: block;
+    }
+
+    /* Re-enable */
+    .img-m1 {
+        top: 2%;
+        right: -10px;
+        transform: rotate(10deg);
+    }
+
     .img-m2 {
+        bottom: 2%;
+        right: -10px;
+        transform: rotate(-5deg);
+        display: block;
+    }
+
+    /* Re-enable */
+
+    /* Hide the inner ones that clutter the center */
+    .img-n1,
+    .img-n2,
+    .img-m3,
+    .img-n3,
+    .img-v3 {
         display: none;
     }
 
-    /* Hide some to reduce clutter */
+    /* 4. Main App Components */
+    .app-container {
+        padding: 10px;
+    }
+
+    .gallery {
+        grid-template-columns: 1fr;
+        /* Single column for mobile */
+        gap: 20px;
+    }
+
+    .card-image {
+        height: 180px;
+        /* Slightly shorter */
+    }
+
+    /* 5. Tickets Modal - Prevent Overflow */
+    .tickets-content {
+        padding: 15px;
+        width: 95%;
+    }
+
+    .ticket-body {
+        flex-direction: column;
+        /* Stack info vertically */
+        gap: 15px;
+        padding: 15px 10px;
+    }
+
+    .flight-path {
+        width: 100%;
+        flex-direction: row;
+        /* Horizontal line */
+        justify-content: center;
+        gap: 10px;
+        margin: 10px 0;
+    }
+
+    .line {
+        width: 50px;
+    }
+
+    .airport {
+        flex-direction: row;
+        gap: 10px;
+        justify-content: center;
+        width: 100%;
+    }
+
+    /* 6. Trip Modal */
+    .trip-photos-grid {
+        justify-content: center;
+        padding: 10px;
+    }
+
+    .photo-card {
+        width: 100%;
+        /* Full width cards */
+        max-width: 280px;
+    }
+
+    .photo-card:nth-child(n) {
+        transform: none !important;
+        /* Remove messy rotation on mobile for readability */
+        margin: 5px 0;
+    }
 }
 
 /* Hidden App State */
