@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuestros Viajes Juntos</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,600;1,600&display=swap"
+        rel="stylesheet">
+
+    <!-- Leaflet CSS -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin="" />
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- Welcome Screen -->
+    <div id="welcome-screen" class="welcome-screen">
+        <div class="welcome-container">
+            <h1 class="welcome-title">¡Feliz cumpleaños reina! 👑</h1>
+            <p class="welcome-subtitle">Espero que te guste este regalo por tus 23 añitos</p>
+
+            <div class="gift-container">
+                <div id="gift-box" class="gift-box">🎁</div>
+                <p class="click-instruction">(Haz click en el regalo)</p>
+            </div>
+
+        </div>
+
+        <!-- Trip Photos Scattered (Moved outside container) -->
+        <!-- Top Left -->
+        <img src="images/venecia-1.jpg" class="floating-img img-v1" alt="Venecia">
+        <img src="images/venecia-2.jpg" class="floating-img img-v2" alt="Venecia">
+
+        <!-- Top Right -->
+        <img src="images/milan-1.jpg" class="floating-img img-m1" alt="Milán">
+        <img src="images/milan-2.jpg" class="floating-img img-m2" alt="Milán">
+
+        <!-- Bottom Left -->
+        <img src="images/niza-3.jpg" class="floating-img img-n1" alt="Niza">
+        <img src="images/niza-1.jpg" class="floating-img img-n2" alt="Niza">
+
+        <!-- Bottom Right -->
+        <img src="images/milan-3.jpg" class="floating-img img-m3" alt="Milán">
+        <img src="images/niza-2.jpg" class="floating-img img-n3" alt="Niza">
+
+        <!-- Middle/Extra -->
+        <img src="images/venecia-3.jpg" class="floating-img img-v3" alt="Venecia">
+    </div>
+
+    <div id="main-app" class="hidden-app">
+        <main class="app-container">
+            <!-- Header -->
+            <header class="hero">
+                <h1>Nuestros Viajes <span class="accent">Juntos</span></h1>
+                <p class="subtitle">...y los muchos que quedan...</p>
+            </header>
+
+            <!-- Trips Gallery -->
+            <section id="trips-gallery" class="gallery">
+                <!-- Cards will be injected here by JS -->
+            </section>
+
+            <!-- The Trigger -->
+            <section class="trigger-section">
+                <div class="dropdown-wrapper">
+                    <button id="next-trip-btn" class="glow-button">
+                        Preparada para el siguiente viaje?
+                        <span class="icon">✈️</span>
+                    </button>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Map Modal -->
+    <div id="map-modal" class="modal hidden">
+        <div class="modal-content">
+            <button id="close-modal" class="close-btn">&times;</button>
+            <div class="modal-header-container">
+                <h2 id="map-title" class="instructions">Selecciona un continente...</h2>
+                <p id="map-subtitle" class="map-subtitle"></p>
+            </div>
+            <div id="map"></div>
+            <div id="phrase-popup" class="phrase-popup hidden">
+                <p id="phrase-text"></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Trip Photos Modal -->
+    <div id="trip-modal" class="modal hidden">
+        <div class="trip-modal-content">
+            <button id="close-trip-modal" class="close-btn">&times;</button>
+            <h2 id="trip-modal-title">Título del Viaje</h2>
+            <div id="trip-images-container" class="trip-photos-grid">
+                <!-- Images injected by JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Video Overlay for Reveal -->
+    <div id="video-reveal" class="video-overlay hidden">
+        <div class="video-container">
+            <button id="close-video" class="close-btn-video">&times;</button>
+            <video id="reveal-video" width="100%" height="100%" controls>
+                <source src="videos/bologna.mp4" type="video/mp4">
+                Tu navegador no soporta videos.
+            </video>
+        </div>
+    </div>
+
+    <!-- Flight Tickets Modal -->
+    <div id="tickets-modal" class="modal hidden">
+        <div class="tickets-content">
+            <button id="close-tickets" class="close-btn">&times;</button>
+            <h2>¡Tu Vuelo a Bolonia! ✈️</h2>
+
+            <div class="ticket-container">
+                <!-- Outbound -->
+                <div class="ticket">
+                    <div class="ticket-header">
+                        <span class="flight-type">IDA</span>
+                        <span class="flight-date">8 Marzo 2025</span>
+                    </div>
+                    <div class="ticket-body">
+                        <div class="airport">
+                            <span class="code">MAD</span>
+                            <span class="time">06:15</span>
+                            <span class="city">Madrid</span>
+                        </div>
+                        <div class="flight-path">
+                            <span class="duration">2h 25min</span>
+                            <div class="line">✈</div>
+                            <span class="type">Directo</span>
+                        </div>
+                        <div class="airport">
+                            <span class="code">BLQ</span>
+                            <span class="time">08:40</span>
+                            <span class="city">Bolonia</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Inbound -->
+                <div class="ticket">
+                    <div class="ticket-header">
+                        <span class="flight-type">VUELTA</span>
+                        <span class="flight-date">10 Marzo 2025</span>
+                    </div>
+                    <div class="ticket-body">
+                        <div class="airport">
+                            <span class="code">BLQ</span>
+                            <span class="time">13:15</span>
+                            <span class="city">Bolonia</span>
+                        </div>
+                        <div class="flight-path">
+                            <span class="duration">2h 25min</span>
+                            <div class="line">✈</div>
+                            <span class="type">Directo</span>
+                        </div>
+                        <div class="airport">
+                            <span class="code">MAD</span>
+                            <span class="time">15:40</span>
+                            <span class="city">Madrid</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="extra-details">
+                <p>¡Prepara la maleta y el apetito! 🍝🍕</p>
+                <div class="polaroids-decoration">
+                    <!-- Decorate with some emoji or icons if needed -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Leaflet JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+        integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
+    <!-- Map Logic -->
+    <script src="js/continents.js"></script>
+    <!-- App Logic -->
+    <script src="js/script.js"></script>
+</body>
+
+</html>
