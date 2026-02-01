@@ -890,182 +890,200 @@ body {
 }
 
 
-/* Responsive Adjustments */
+/* Responsive Adjustments - Aggressive Mobile Overhaul */
 @media (max-width: 768px) {
 
-    /* 1. Global & Typography */
-    .hero {
-        padding: 30px 15px;
-        margin-top: 20px;
-        margin-bottom: 30px;
+    /* 1. Global Reset for Mobile */
+    html,
+    body {
+        overflow-x: hidden;
+        font-size: 16px;
+        /* Base size for rems */
     }
 
+    .app-container {
+        padding: 15px;
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    /* 2. Fluid Typography (Readable without zoom) */
     .hero h1 {
-        font-size: 2.5rem;
-        /* Reduced from 4rem */
+        font-size: clamp(2rem, 5vw, 2.5rem);
+        /* Dynamic resizing */
+        line-height: 1.2;
     }
 
     .hero .subtitle {
-        font-size: 1.1rem;
-        /* Reduced from 1.5rem */
-    }
-
-    /* 2. Welcome Screen & Gift */
-    .welcome-screen {
-        padding: 10px;
-        /* Prevent edge touching */
-    }
-
-    .welcome-container {
-        width: 100%;
-        padding: 25px 15px;
-        border-radius: 25px;
+        font-size: 1rem;
+        padding: 0 10px;
     }
 
     .welcome-title {
-        font-size: 2.8rem;
-        /* Reduced from 5rem */
-        margin-bottom: 10px;
+        font-size: clamp(2.5rem, 8vw, 3.5rem);
+        padding: 0 10px;
     }
 
     .welcome-subtitle {
-        font-size: 1.2rem;
-        /* Reduced from 1.8rem */
-        margin-bottom: 10px;
-        padding: 0 10px;
-        /* Add padding to prevent text hitting edges */
+        font-size: 1.1rem;
+        padding: 0 20px;
+        line-height: 1.4;
+    }
+
+    /* 3. Welcome Screen layout */
+    .welcome-container {
+        width: 95%;
+        padding: 30px 15px;
+        border-radius: 20px;
+        /* Enhance contrast on mobile */
+        background: rgba(255, 255, 255, 0.6);
     }
 
     .gift-container {
-        margin-top: 10px;
-        /* Reset the negative margin (-50px) from desktop */
+        margin-top: 5px;
     }
 
     .gift-box {
-        font-size: 6rem;
-        /* Reduced from 10rem to prevent scroll */
+        font-size: 5rem;
+        /* Easy to tap but not huge */
         margin-bottom: 5px;
+        /* Increase touch area */
+        padding: 20px;
     }
 
     .click-instruction {
-        font-size: 1rem;
-        padding: 5px 10px;
+        font-size: 0.9rem;
+        background: rgba(255, 255, 255, 0.8);
+        padding: 8px 16px;
+        border-radius: 20px;
     }
 
-    /* 3. Floating Images - TAME THEM */
+    /* 4. Aggressive Clean-up: Hide distractions */
+    /* Hide almost ALL floating images to save space */
     .floating-img {
-        width: 80px;
-        /* Much smaller */
-        border-width: 3px;
-        border-bottom-width: 10px;
-        opacity: 0.6;
-        /* Less distracting */
+        display: none !important;
     }
 
-    /* Push them to edges to clear text area */
+    /* Keep only 2 small accents in corners, non-intrusive */
     .img-v1 {
-        top: 2%;
-        left: -10px;
-        transform: rotate(-10deg);
-    }
-
-    .img-v2 {
-        bottom: 2%;
-        left: -10px;
-        transform: rotate(5deg);
-        display: block;
-    }
-
-    /* Re-enable */
-    .img-m1 {
-        top: 2%;
-        right: -10px;
-        transform: rotate(10deg);
+        display: block !important;
+        width: 60px;
+        top: 10px;
+        left: 10px;
+        border-width: 3px;
+        opacity: 0.5;
     }
 
     .img-m2 {
-        bottom: 2%;
-        right: -10px;
-        transform: rotate(-5deg);
-        display: block;
+        display: block !important;
+        width: 60px;
+        bottom: 10px;
+        right: 10px;
+        border-width: 3px;
+        opacity: 0.5;
     }
 
-    /* Re-enable */
-
-    /* Hide the inner ones that clutter the center */
-    .img-n1,
-    .img-n2,
-    .img-m3,
-    .img-n3,
-    .img-v3 {
-        display: none;
+    /* 5. Modals: Full Screen Experience */
+    .modal {
+        padding: 0;
+        align-items: flex-end;
+        /* Sheet style or full screen */
     }
 
-    /* 4. Main App Components */
-    .app-container {
-        padding: 10px;
-    }
-
-    .gallery {
-        grid-template-columns: 1fr;
-        /* Single column for mobile */
-        gap: 20px;
-    }
-
-    .card-image {
-        height: 180px;
-        /* Slightly shorter */
-    }
-
-    /* 5. Tickets Modal - Prevent Overflow */
+    .modal-content,
+    .trip-modal-content,
     .tickets-content {
-        padding: 15px;
-        width: 95%;
+        width: 100%;
+        height: 100%;
+        /* Full screen */
+        max-width: 100%;
+        max-height: 100%;
+        border-radius: 0;
+        /* Removing rounded corners */
+        padding: 20px;
+        overflow-y: auto;
+        /* Internal scroll */
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* 6. Touch Targets (Fat Finger Friendly) */
+    .close-btn,
+    .close-btn-video {
+        top: 15px;
+        right: 15px;
+        width: 48px;
+        /* Minimum touch target size */
+        height: 48px;
+        background: rgba(0, 0, 0, 0.1);
+        /* Visible circular bg */
+        border-radius: 50%;
+        font-size: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+    }
+
+    .glow-button {
+        width: 100%;
+        /* Full width button */
+        justify-content: center;
+        padding: 20px;
+        /* Easy to tap */
+        font-size: 1.1rem;
+    }
+
+    /* 7. Tickets: Stacked and Clear */
+    .ticket {
+        margin-bottom: 20px;
     }
 
     .ticket-body {
         flex-direction: column;
-        /* Stack info vertically */
-        gap: 15px;
-        padding: 15px 10px;
+        gap: 20px;
+        padding: 25px 15px;
+    }
+
+    .airport {
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+        /* Spread out */
+        padding: 0 10px;
     }
 
     .flight-path {
         width: 100%;
         flex-direction: row;
-        /* Horizontal line */
-        justify-content: center;
-        gap: 10px;
-        margin: 10px 0;
+        margin: 15px 0;
     }
 
     .line {
-        width: 50px;
-    }
-
-    .airport {
-        flex-direction: row;
-        gap: 10px;
-        justify-content: center;
         width: 100%;
+        /* Long line across */
     }
 
-    /* 6. Trip Modal */
-    .trip-photos-grid {
-        justify-content: center;
-        padding: 10px;
+    /* 8. Gallery & Photo Grid */
+    .gallery {
+        grid-template-columns: 1fr;
+        /* Single column */
+        gap: 30px;
+        padding-bottom: 40px;
     }
 
     .photo-card {
         width: 100%;
-        /* Full width cards */
-        max-width: 280px;
+        max-width: 100%;
+        /* Use full width */
+        transform: none !important;
+        /* No rotations */
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
     }
 
-    .photo-card:nth-child(n) {
-        transform: none !important;
-        /* Remove messy rotation on mobile for readability */
-        margin: 5px 0;
+    .trip-photos-grid {
+        padding: 60px 0 20px 0;
+        /* Space for close button */
     }
 }
 
