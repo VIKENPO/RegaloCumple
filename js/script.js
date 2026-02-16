@@ -318,7 +318,7 @@ function onCountryEachFeature(feature, layer) {
             // Transition to City Guessing Game after a delay
             setTimeout(() => {
                 startCityGuessingGame();
-            }, 3000);
+            }, 4500);
         });
     } else {
         // Standard Popup for others with "Cloud" message
@@ -427,20 +427,47 @@ function showTickets() {
     closeTicketsBtn.onclick = () => {
         ticketsModal.classList.add('hidden');
 
-        // Enable Map Interaction for exploration
-        map.dragging.enable();
-        map.touchZoom.enable();
-        map.doubleClickZoom.enable();
-        map.scrollWheelZoom.enable();
-        map.boxZoom.enable();
-        map.keyboard.enable();
-
-        // Optional: Show zoom controls
-        if (map.zoomControl) map.zoomControl.enable();
-
-        document.getElementById('map-title').innerText = "¡Explora Bolonia desde el aire! 🛰️";
-        showPhrase("Ahora puedes moverte, hacer zoom y cotillear todo lo que quieras. 👀");
+        // CHAIN: Open Backpack Reveal instead of going back to map immediately
+        setTimeout(() => {
+            showBackpackReveal();
+        }, 500);
     };
+}
+
+function showBackpackReveal() {
+    const backpackModal = document.getElementById('backpack-modal');
+    const closeBackpackBtn = document.getElementById('close-backpack');
+
+    backpackModal.classList.remove('hidden');
+    backpackModal.classList.add('active');
+
+    // Confetti effect if possible, or just open
+
+    closeBackpackBtn.onclick = () => {
+        backpackModal.classList.remove('active');
+        setTimeout(() => {
+            backpackModal.classList.add('hidden');
+
+            // NOW enable map interaction (Final State)
+            enableMapInteraction();
+        }, 300);
+    };
+}
+
+function enableMapInteraction() {
+    // Enable Map Interaction for exploration
+    map.dragging.enable();
+    map.touchZoom.enable();
+    map.doubleClickZoom.enable();
+    map.scrollWheelZoom.enable();
+    map.boxZoom.enable();
+    map.keyboard.enable();
+
+    // Optional: Show zoom controls
+    if (map.zoomControl) map.zoomControl.enable();
+
+    document.getElementById('map-title').innerText = "¡Explora Bolonia desde el aire! 🛰️";
+    showPhrase("Ahora puedes moverte, hacer zoom y cotillear todo lo que quieras. 👀");
 }
 
 // 3. Map Modal Logic
