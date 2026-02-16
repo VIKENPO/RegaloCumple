@@ -1156,8 +1156,23 @@ body {
     max-width: 95%;
     /* Almost full width on mobile */
     width: 600px;
-    /* Fixed width on Desktop */
+    /* Default width */
     animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Desktop Logic for Backpack */
+@media (min-width: 1024px) {
+    .backpack-content {
+        width: auto;
+        max-width: 1000px;
+        /* Much wider on PC */
+        padding: 50px;
+    }
+
+    .backpack-img {
+        max-height: 80vh !important;
+        /* Huge on PC */
+    }
 }
 
 @keyframes popIn {
